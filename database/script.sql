@@ -1,5 +1,4 @@
--- Active: 1734723274644@@127.0.0.1@3306
-DROP DATABASE IF EXISTS CMS_db;
+DROP DATABASE if_exists CMS_db;
 CREATE DATABASE CMS_db;
 USE CMS_db;
 CREATE TABLE users(
@@ -32,7 +31,7 @@ CREATE TABLE articles(
 	featured_image VARCHAR(255),
 	status ENUM("published","draft","complete"),
 	schelduled_date DATETIME,
-    user_id BIGINT,
+    user_id INT NOT NULL,
     created_at DATETIME,
     update_at DATETIME,
     views INT,
@@ -40,7 +39,7 @@ CREATE TABLE articles(
     FOREIGN KEY (user_id) REFERENCES users(user_id) on DELETE CASCADE on update CASCADE
 );
 CREATE TABLE articles_tags(
-	article_id int,
+	 article_id int,
     tag_id int,
     PRIMARY KEY(article_id, tag_id),
     FOREIGN KEY(article_id) REFERENCES articles(article_id) on DELETE CASCADE on update CASCADE,
